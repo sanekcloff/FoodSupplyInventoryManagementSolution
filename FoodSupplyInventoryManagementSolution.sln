@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodSupplyInventoryManagementLib", "FoodSupplyInventoryManagementLib\FoodSupplyInventoryManagementLib.csproj", "{4FE8C5C3-B6A0-4F15-8D63-FF0E4B746B24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodSupplyInventoryManagementDBContext", "FoodSupplyInventoryManagementDBContext\FoodSupplyInventoryManagementDBContext.csproj", "{A0D82056-2337-4A26-A538-49921BC23595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodSupplyInvetoryManagementApp", "FoodSupplyInvetoryManagementApp\FoodSupplyInvetoryManagementApp.csproj", "{A81F5BE5-DCA2-48A0-AAA8-695DC7907277}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4FE8C5C3-B6A0-4F15-8D63-FF0E4B746B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FE8C5C3-B6A0-4F15-8D63-FF0E4B746B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FE8C5C3-B6A0-4F15-8D63-FF0E4B746B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D82056-2337-4A26-A538-49921BC23595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D82056-2337-4A26-A538-49921BC23595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D82056-2337-4A26-A538-49921BC23595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D82056-2337-4A26-A538-49921BC23595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81F5BE5-DCA2-48A0-AAA8-695DC7907277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81F5BE5-DCA2-48A0-AAA8-695DC7907277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81F5BE5-DCA2-48A0-AAA8-695DC7907277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81F5BE5-DCA2-48A0-AAA8-695DC7907277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
