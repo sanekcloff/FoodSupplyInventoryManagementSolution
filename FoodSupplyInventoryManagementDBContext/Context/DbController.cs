@@ -10,19 +10,12 @@ namespace FoodSupplyInventoryManagementDBContext.Context
 {
     internal class DbController
     {
-        internal DbController(bool useSqlite = false)
+        private DbController()
         {
             try
             {
-                if (useSqlite)
-                {
-                    _appDbContext = new SqliteDbContext();
-                }
-                else
-                {
-                    _appDbContext = new SqlServerDbContext();
-                }
-                Debug.WriteLine($"{this.GetType().Name} created! Context type is {_appDbContext.GetType().Name}");
+                SetSqliteConnection();
+                Debug.WriteLine($"{GetType().Name} created! Context type is {_appDbContext.GetType().Name}");
             }
             catch (Exception ex)
             {
@@ -31,10 +24,22 @@ namespace FoodSupplyInventoryManagementDBContext.Context
         }
 
         private AppDbContext _appDbContext = null!;
+        private static DbController _instance = null!;
+
 
         internal AppDbContext GetContext()
         {
             return _appDbContext;
+        }
+        internal static DbController GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new DbController();
+                return _instance;
+            }
+            else
+                return _instance;
         }
         internal void SetSqliteConnection()
         {
@@ -45,4 +50,5 @@ namespace FoodSupplyInventoryManagementDBContext.Context
             _appDbContext = new SqlServerDbContext();
         }
     }
+
 }

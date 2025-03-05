@@ -21,9 +21,8 @@ namespace FoodSupplyInvetoryManagementApp
         public MainWindow()
         {
             InitializeComponent();
-
-            new CustomerService().Add(new Customer() 
-            { 
+            var customer1 = new Customer()
+            {
                 Firstname = "Имя",
                 Lastname = "Фамилия",
                 Middlename = "Отчество",
@@ -31,7 +30,29 @@ namespace FoodSupplyInvetoryManagementApp
                 Login = "Login",
                 Password = "Password",
                 Organization = "Организация"
-            });
+            };
+            var customer2 = new Customer()
+            {
+                Firstname = "Имя1",
+                Lastname = "Фамилия1",
+                Middlename = "Отчество1",
+                Id = Guid.NewGuid(),
+                Login = "Login1",
+                Password = "Password1",
+                Organization = "Организация1"
+            };
+            if (new CustomerService().Add(customer1).Result) 
+            {
+                MessageBox.Show("Customer added");
+            }
+            if (new CustomerService().Update(customer1, customer2).Result)
+            {
+                MessageBox.Show("Customer updated");
+            }
+            if (new CustomerService().Remove(customer1).Result)
+            {
+                MessageBox.Show("Customer deleted");
+            }
         }
     }
 }

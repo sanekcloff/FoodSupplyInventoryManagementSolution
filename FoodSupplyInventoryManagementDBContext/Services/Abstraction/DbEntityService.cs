@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace FoodSupplyInventoryManagementDBContext.Services.Abstraction
 {
-    public abstract class DbEntityServiceBase<T>
+    public abstract class DbEntityServiceBase<T> : IBaseManagement<T>
     {
         protected readonly AppDbContext ctx;
         public DbEntityServiceBase()
         {
-            ctx = new DbController().GetContext();
+            ctx = DbController.GetInstance().GetContext();
         }
+
+        public abstract Task<IEnumerable<T>> GetEntities();
+        public abstract Task<T> GetEntity(Guid id);
         public abstract Task<bool> Add(T entity);
-        public abstract Task<bool> Update(T entity);
+        public abstract Task<bool> Update(T entity, T newEntity);
         public abstract Task<bool> Remove(T entity);
     }
 }

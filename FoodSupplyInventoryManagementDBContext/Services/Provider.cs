@@ -15,12 +15,22 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             throw new NotImplementedException();
         }
 
+        public override Task<IEnumerable<Provider>> GetEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<Provider> GetEntity(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Task<bool> Remove(Provider entity)
         {
             throw new NotImplementedException();
         }
 
-        public override Task<bool> Update(Provider entity)
+        public override Task<bool> Update(Provider entity, Provider newEntity)
         {
             throw new NotImplementedException();
         }
