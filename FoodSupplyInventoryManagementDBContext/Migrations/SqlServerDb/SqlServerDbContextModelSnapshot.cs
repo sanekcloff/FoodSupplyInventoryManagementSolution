@@ -71,6 +71,10 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<Guid>("ProviderId")
                         .HasColumnType("uniqueidentifier");
 
@@ -79,6 +83,8 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("Products");
                 });
@@ -207,19 +213,15 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                     b.ToTable("WarehouseProducts");
                 });
 
-            modelBuilder.Entity("ProductProvider", b =>
+            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.Property<Guid>("ProductsId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Providers")
+                        .WithMany("Products")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<Guid>("ProvidersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProductsId", "ProvidersId");
-
-                    b.HasIndex("ProvidersId");
-
-                    b.ToTable("ProductProvider");
+                    b.Navigation("Providers");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>
@@ -271,21 +273,6 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                     b.Navigation("Warehouse");
                 });
 
-            modelBuilder.Entity("ProductProvider", b =>
-                {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", null)
-                        .WithMany()
-                        .HasForeignKey("ProvidersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Customer", b =>
                 {
                     b.Navigation("Supplies");
@@ -294,6 +281,11 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
                     b.Navigation("WarehouseProducts");
+                });
+
+            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Provider", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>

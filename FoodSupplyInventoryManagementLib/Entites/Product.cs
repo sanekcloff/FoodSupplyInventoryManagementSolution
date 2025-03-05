@@ -14,10 +14,11 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string? Description { get; set; } = null!;
         public decimal Cost { get; set; }
         public decimal Discount { get; set; }
+        public byte[] Image { get; set; } = null!;
 
         public Guid ProviderId { get; set; }
 
-        public Provider Providers { get; set; } = null!;
+        public Provider Provider { get; set; } = null!;
 
         public IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = null!;
 

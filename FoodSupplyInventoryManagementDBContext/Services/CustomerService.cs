@@ -12,89 +12,65 @@ namespace FoodSupplyInventoryManagementDBContext.Services
 {
     public class CustomerService : DbEntityServiceBase<Customer>
     {
-        public override Task<bool> Add(Customer entity)
+        public override async Task<bool> Add(Customer entity)
         {
             // Проверка null
-            if (entity == null) return Task.FromResult(false);
+            if (entity == null) return await Task.FromResult(false);
 
             // Проверка на пустой Guid
-            if (entity.Id == Guid.Empty) return Task.FromResult(false);
+            if (entity.Id == Guid.Empty) return await Task.FromResult(false);
 
             // проверка на ввод ФИО
-            if (string.IsNullOrEmpty(entity.Firstname)) return Task.FromResult(false);
-            if (string.IsNullOrEmpty(entity.Lastname)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(entity.Firstname)) return await Task.FromResult(false);
+            if (string.IsNullOrEmpty(entity.Lastname)) return await Task.FromResult(false);
 
             // проверка организации
-            if (string.IsNullOrEmpty(entity.Organization)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(entity.Organization)) return await Task.FromResult(false);
 
             // проверка логина и пароля
-            if (string.IsNullOrEmpty(entity.Login)) return Task.FromResult(false);
-            if (string.IsNullOrEmpty(entity.Password)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(entity.Login)) return await Task.FromResult(false);
+            if (string.IsNullOrEmpty(entity.Password)) return await Task.FromResult(false);
 
             // добавление в бд
             try
             {
-                ctx.AddAsync(entity);
+                await ctx.AddAsync(entity);
                 Debug.WriteLine($"{GetType().Name}: entity was added!");
-                ctx.SaveChangesAsync();
+                await ctx.SaveChangesAsync();
                 Debug.WriteLine($"{GetType().Name}: entity was saved!");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"{GetType().Name}: {ex.Message}");
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
 
-            return Task.FromResult(true);
+            return await Task.FromResult(true);
         }
 
-        public override Task<IEnumerable<Customer>> GetEntities() => Task.FromResult(ctx.Customers.ToList() as IEnumerable<Customer>);
+        public override async Task<IEnumerable<Customer>> GetEntities() => await Task.FromResult(ctx.Customers.ToList() as IEnumerable<Customer>);
 
-        public override Task<Customer> GetEntity(Guid id)
+        public override async Task<Customer> GetEntity(Guid id) => await Task.FromResult(ctx.Customers.Single(c => c.Id == id));
+
+        public override async Task<bool> Update(Customer entity, Customer newEntity)
         {
-            return Task.FromResult(ctx.Customers.Single(c=>c.Id == id));
-        }
-
-        public override Task<bool> Remove(Customer entity)
-        {
-            if (entity == null) return Task.FromResult(false);
-
-            // удаление из бд
-            try
-            {
-                ctx.Remove(entity);
-                Debug.WriteLine($"{GetType().Name}: entity removed!");
-                ctx.SaveChangesAsync();
-                Debug.WriteLine($"{GetType().Name}: changes saved!");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"{GetType().Name}: {ex.Message}");
-                return Task.FromResult(false);
-            }
-
-            return Task.FromResult(true);
-        }
-
-        public override Task<bool> Update(Customer entity, Customer newEntity)
-        {
-            if (entity == null) return Task.FromResult(false);
-            if (newEntity == null) return Task.FromResult(false);
+            if (entity == null) return await Task.FromResult(false);
+            if (newEntity == null) return await Task.FromResult(false);
 
             // проверка новых значений
             // Проверка на пустой Guid
-            if (newEntity.Id == Guid.Empty) return Task.FromResult(false);
+            if (newEntity.Id == Guid.Empty) return await Task.FromResult(false);
 
             // проверка на ввод ФИО
-            if (string.IsNullOrEmpty(newEntity.Firstname)) return Task.FromResult(false);
-            if (string.IsNullOrEmpty(newEntity.Lastname)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Firstname)) return await Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Lastname)) return await Task.FromResult(false);
 
             // проверка организации
-            if (string.IsNullOrEmpty(newEntity.Organization)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Organization)) return await Task.FromResult(false);
 
             // проверка логина и пароля
-            if (string.IsNullOrEmpty(newEntity.Login)) return Task.FromResult(false);
-            if (string.IsNullOrEmpty(newEntity.Password)) return Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Login)) return await Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Password)) return await Task.FromResult(false);
 
             // обновление данных
             try
@@ -110,17 +86,15 @@ namespace FoodSupplyInventoryManagementDBContext.Services
                 // Сохранение в бд
                 ctx.Update(entity);
                 Debug.WriteLine($"{GetType().Name}: entity updated!");
-                ctx.SaveChangesAsync();
+                await ctx.SaveChangesAsync();
                 Debug.WriteLine($"{GetType().Name}: changes saved!");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"{GetType().Name}: {ex.Message}");
-                return Task.FromResult(false);
+                return await Task.FromResult(false);
             }
-
-
-            return Task.FromResult(true);
+            return await Task.FromResult(true);
         }
     }
 }
