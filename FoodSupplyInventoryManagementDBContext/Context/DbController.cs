@@ -26,7 +26,6 @@ namespace FoodSupplyInventoryManagementDBContext.Context
         private AppDbContext _appDbContext = null!;
         private static DbController _instance = null!;
 
-
         internal AppDbContext GetContext()
         {
             return _appDbContext;

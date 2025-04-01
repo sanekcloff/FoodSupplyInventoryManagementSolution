@@ -16,8 +16,8 @@ namespace FoodSupplyInventoryManagementDBContext.Services.Abstraction
             ctx = DbController.GetInstance().GetContext();
         }
 
-        public abstract Task<IEnumerable<T>> GetEntities();
-        public abstract Task<T> GetEntity(Guid id);
+        public abstract Task<IEnumerable<T?>> GetEntities();
+        public abstract Task<T?> GetEntity(Guid id);
         public abstract Task<bool> Add(T entity);
         public abstract Task<bool> Update(T entity, T newEntity);
         public async virtual Task<bool> Remove(T entity)

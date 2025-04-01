@@ -37,9 +37,9 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             }
         }
 
-        public override async Task<IEnumerable<Provider>> GetEntities() => await Task.FromResult(ctx.Providers);
+        public override async Task<IEnumerable<Provider?>> GetEntities() => await Task.FromResult(ctx.Providers);
 
-        public override async Task<Provider> GetEntity(Guid id)
+        public override async Task<Provider?> GetEntity(Guid id)
         {
             return await Task.FromResult(ctx.Providers.Single(p=>p.Id == id));
         }

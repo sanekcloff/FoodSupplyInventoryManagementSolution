@@ -34,9 +34,9 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             }
         }
 
-        public override async Task<IEnumerable<Warehouse>> GetEntities() => await Task.FromResult(ctx.Warehouses);
+        public override async Task<IEnumerable<Warehouse?>> GetEntities() => await Task.FromResult(ctx.Warehouses);
 
-        public async override Task<Warehouse> GetEntity(Guid id) => await Task.FromResult(ctx.Warehouses.Single(w=>w.Id == id));
+        public async override Task<Warehouse?> GetEntity(Guid id) => await Task.FromResult(ctx.Warehouses.Single(w=>w.Id == id));
 
         public async override Task<bool> Remove(Warehouse entity)
         {

@@ -37,9 +37,9 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             }
         }
 
-        public override async Task<IEnumerable<Supply>> GetEntities() => await Task.FromResult(ctx.Supplies.Include(s=>s.Customer).ThenInclude(c=>c.Organization));
+        public override async Task<IEnumerable<Supply?>> GetEntities() => await Task.FromResult(ctx.Supplies.Include(s=>s.Customer).ThenInclude(c=>c.Organization));
 
-        public override async Task<Supply> GetEntity(Guid id) => await Task.FromResult(ctx.Supplies.Include(s => s.Customer).ThenInclude(c => c.Organization).Single(s=>s.Id == id));
+        public override async Task<Supply?> GetEntity(Guid id) => await Task.FromResult(ctx.Supplies.Include(s => s.Customer).ThenInclude(c => c.Organization).Single(s=>s.Id == id));
 
         public async Task<bool> SetStatusCanceled(Supply entity)
         {

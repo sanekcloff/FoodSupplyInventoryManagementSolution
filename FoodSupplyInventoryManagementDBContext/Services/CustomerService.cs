@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FoodSupplyInventoryManagementDBContext.Services
 {
-    public class CustomerService : DbEntityServiceBase<Customer>
+    public class CustomerService : DbEntityServiceBase<Customer>, IAccountManagement<Customer>
     {
         public override async Task<bool> Add(Customer entity)
         {
@@ -48,9 +48,10 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             return await Task.FromResult(true);
         }
 
-        public override async Task<IEnumerable<Customer>> GetEntities() => await Task.FromResult(ctx.Customers.ToList() as IEnumerable<Customer>);
 
-        public override async Task<Customer> GetEntity(Guid id) => await Task.FromResult(ctx.Customers.Single(c => c.Id == id));
+        public override async Task<IEnumerable<Customer?>> GetEntities() => await Task.FromResult(ctx.Customers.ToList() as IEnumerable<Customer>);
+        public async Task<Customer?> GetAccount(string login, string password) => await Task.FromResult(ctx.Customers.SingleOrDefault(c => c.Login == login && c.Password == password));
+        public override async Task<Customer?> GetEntity(Guid id) => await Task.FromResult(ctx.Customers.Single(c => c.Id == id));
 
         public override async Task<bool> Update(Customer entity, Customer newEntity)
         {

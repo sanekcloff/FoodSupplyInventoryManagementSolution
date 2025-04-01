@@ -1,4 +1,6 @@
-﻿using MailingControllerLib.Controllers.Abstraction;
+﻿using FoodSupplyInventoryManagementDBContext.Services;
+using FoodSupplyInventoryManagementLib.Entites;
+using FoodSupplyInvetoryManagementApp.ViewModels.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +15,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FoodSupplyInvetoryManagementApp
+namespace FoodSupplyInvetoryManagementApp.Views.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для TestWindow.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class TestWindow : Window
+    public partial class MainWindow : Window
     {
-        public TestWindow()
+        public MainWindow()
         {
             InitializeComponent();
-            new EmailController().Send().GetAwaiter();
+            DataContext = new MainViewModel();
         }
     }
 }
