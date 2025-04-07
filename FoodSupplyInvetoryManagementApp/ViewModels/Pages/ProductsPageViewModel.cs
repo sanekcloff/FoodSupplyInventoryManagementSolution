@@ -4,6 +4,7 @@ using FoodSupplyInvetoryManagementApp.Control;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
     {
         public ProductsPageViewModel(ViewModelBase viewModel)
         {
-            _providers = new ProviderService().GetEntities().Result.ToList()!;
-            _products = new ProductService().GetEntities().Result.ToList()!;
+            _suppliers = (ObservableCollection<Supplier>)new ProviderService().GetEntities().Result;
+            _products = (ObservableCollection<Product>)new ProductService().GetEntities().Result;
 
             UploadImage = new RelayCommand(o => 
             {
@@ -44,23 +45,23 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
             });
         }
 
-        private string _title;
-        private string _description;
-        private decimal _cost;
-        private byte _discount;
-        private Supplier _selectedProvider;
+        private string _title = string.Empty;
+        private string _description = string.Empty;
+        private decimal _cost = 0;
+        private byte _discount = 0;
+        private Supplier _selectedProvider = null!;
 
-        private string _etitle;
-        private string _edescription;
-        private decimal _ecost;
-        private byte _ediscount;
-        private Supplier _eselectedProvider;
+        private string _etitle = string.Empty;
+        private string _edescription = string.Empty;
+        private decimal _ecost = 0;
+        private byte _ediscount = 0;
+        private Supplier _eselectedProvider = null!;
 
-        private byte[] _image;
-        private ICollection<Supplier> _providers;
+        private byte[] _image = null!;
+        private ICollection<Supplier> _suppliers;
 
-        private Product _selectedProduct;
-        private ICollection<Product> _products;
+        private Product _selectedProduct = null!;
+        private ICollection<Product> _products = null!;
 
 
         public string Title { get => _title; set => Set(ref _title, value, nameof(Title)); }
@@ -73,7 +74,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
         public decimal ECost { get => _ecost; set => Set(ref _ecost, value, nameof(ECost)); }
         public byte EDiscount { get => _ediscount; set => Set(ref _ediscount, value, nameof(EDiscount)); }
         public Supplier ESelectedProvider { get => _eselectedProvider; set => Set(ref _eselectedProvider, value, nameof(ESelectedProvider)); }
-        public ICollection<Supplier> Providers { get => _providers; set => Set(ref _providers, value, nameof(Providers)); }
+        public ICollection<Supplier> Suppliers { get => _suppliers; set => Set(ref _suppliers, value, nameof(Suppliers)); }
         public Product SelectedProduct { get => _selectedProduct; set => Set(ref _selectedProduct, value, nameof(SelectedProduct)); }
         public ICollection<Product> Products { get => _products; set => Set(ref _products, value, nameof(Products)); }
         public byte[] Image { get => _image; set => Set(ref _image, value, nameof(Image)); }
