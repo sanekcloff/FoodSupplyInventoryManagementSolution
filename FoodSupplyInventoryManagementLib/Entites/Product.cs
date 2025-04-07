@@ -14,13 +14,18 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string? Description { get; set; } = null!;
         public decimal Cost { get; set; }
         public decimal Discount { get; set; }
-        public byte[] Image { get; set; } = null!;
+        public byte[]? Image { get; set; } = null!;
 
         public Guid ProviderId { get; set; }
 
         public Provider Provider { get; set; } = null!;
 
-        public IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = null!;
+        public IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = [];
+
+        public override string ToString()
+        {
+            return $"{Title}: {Description} - {Cost} ({Discount}) [{Provider.ToString()}] - [{Image}]";
+        }
 
     }
 }

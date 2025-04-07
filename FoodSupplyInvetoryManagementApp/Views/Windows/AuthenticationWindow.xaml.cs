@@ -27,7 +27,6 @@ namespace FoodSupplyInvetoryManagementApp.Views.Windows
         {
             InitializeComponent();
             DataContext = _viewModel = new AuthenticationViewModel();
-            new CustomerService().Add(new Customer() { Id = Guid.NewGuid(), Lastname = "Osel", Firstname = "Stas", Middlename = "Kozlov", Organization = "Circus", Login = "test1", Password = "test1" }).GetAwaiter();
         }
     }
 }

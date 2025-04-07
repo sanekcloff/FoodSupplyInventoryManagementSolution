@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:FoodSupplyInvetoryManagementApp.Views.Windows"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
-        
+
+        <ContentControl Content="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"/>
+
     </Grid>
+    
 </Window>

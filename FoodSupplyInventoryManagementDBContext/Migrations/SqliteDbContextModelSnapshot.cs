@@ -67,7 +67,6 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<Guid>("ProviderId")
@@ -210,13 +209,13 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Providers")
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Provider")
                         .WithMany("Products")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Providers");
+                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>

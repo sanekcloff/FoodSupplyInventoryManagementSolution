@@ -22,10 +22,11 @@ namespace FoodSupplyInvetoryManagementApp.Views.Windows
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Customer customer)
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(customer);
+            Title = "Учётная запись: " + customer.Shortname;
         }
     }
 }

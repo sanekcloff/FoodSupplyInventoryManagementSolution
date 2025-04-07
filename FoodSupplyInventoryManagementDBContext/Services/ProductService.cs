@@ -14,25 +14,30 @@ namespace FoodSupplyInventoryManagementDBContext.Services
     {
         public async override Task<bool> Add(Product entity)
         {
-            if (entity == null) return await Task.FromResult(false);
-
-            if (string.IsNullOrEmpty(entity.Title)) return await Task.FromResult(false);
-            if (entity.Cost == 0) return await Task.FromResult(false);
-            if (entity.Image == null!) return await Task.FromResult(false);
-            if (entity.Provider == null!) return await Task.FromResult(false);
+            // Проверка входных параметров
+            if (entity == null ||
+                string.IsNullOrEmpty(entity.Title) ||
+                entity.Cost <= 0 ||
+                entity.Image == null ||
+                entity.Provider == null)
+            {
+                return false;
+            }
 
             try
             {
                 await ctx.AddAsync(entity);
                 Debug.WriteLine($"{GetType().Name}: entity was added!");
-                await ctx.SaveChangesAsync();
-                Debug.WriteLine($"{GetType().Name}: entity was saved!");
-                return await Task.FromResult(true);
+
+                int changes = await ctx.SaveChangesAsync();
+                Debug.WriteLine($"{GetType().Name}: {changes} changes were saved!");
+
+                return changes > 0;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"{GetType().Name}: {ex.Message}");
-                return await Task.FromResult(false);
+                Debug.WriteLine($"{GetType().Name}: Error adding product. {ex.Message}");
+                return false;
             }
         }
 

@@ -4,12 +4,14 @@ using FoodSupplyInventoryManagementLib.Entites;
 using FoodSupplyInvetoryManagementApp.Control;
 using FoodSupplyInvetoryManagementApp.ViewModels.Windows;
 using FoodSupplyInvetoryManagementApp.Views.Pages;
+using FoodSupplyInvetoryManagementApp.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
@@ -24,7 +26,17 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
             });
             LoginCommand = new RelayCommand(o =>
             {
-                if (new CustomerService().GetAccount(Login, Password).Result != null) Debug.WriteLine($"[{GetType()}] - customer was found!");
+                var customer = new CustomerService().GetAccount(Login, Password).Result;
+                if (customer != null) 
+                {
+                    Debug.WriteLine($"[{GetType()}] - customer was found!");
+                    MessageBox.Show($"[{GetType()}] - customer was found!");
+                    var newWin = new MainWindow(customer);
+                    var pervWin = Application.Current.MainWindow;
+                    Application.Current.MainWindow = newWin;
+                    newWin.Show();
+                    pervWin.Close();
+                }
                 else Debug.WriteLine($"[{GetType()}] - customer doesn't found!");
             });
         }

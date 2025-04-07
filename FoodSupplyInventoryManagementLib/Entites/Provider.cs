@@ -16,5 +16,10 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string Phone { get; set; } = null!;
 
         public IEnumerable<Product> Products { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"{Title} - {Description}\n{Email}\n{Phone}";
+        }
     }
 }

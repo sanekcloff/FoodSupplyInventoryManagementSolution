@@ -12,7 +12,7 @@ namespace FoodSupplyInventoryManagementDBContext.Context.Connections
     {
         public SqliteDbContext()
         {
-            var tempSolutionPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.ToString(), "FoodSupplyInventoryManagementDBContext",_folderName);
+            var tempSolutionPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.Parent!.ToString(), "FoodSupplyInventoryManagementDBContext", _folderName);
             if (!Directory.Exists(tempSolutionPath))
             {
                 Directory.CreateDirectory(tempSolutionPath);
@@ -33,7 +33,7 @@ namespace FoodSupplyInventoryManagementDBContext.Context.Connections
         }
         private const string _folderName = "LocalData";
         private const string _fileName = "localDb.db";
-        private string _connectionString = string.Empty;
+        private string _connectionString = "Data source = local.db";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder.UseSqlite(_connectionString));

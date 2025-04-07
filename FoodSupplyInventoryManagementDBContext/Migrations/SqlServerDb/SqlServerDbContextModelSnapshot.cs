@@ -72,7 +72,6 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<Guid>("ProviderId")
@@ -215,13 +214,13 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Providers")
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Provider")
                         .WithMany("Products")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Providers");
+                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>

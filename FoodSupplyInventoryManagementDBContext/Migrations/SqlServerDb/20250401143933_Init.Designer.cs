@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
 {
     [DbContext(typeof(SqlServerDbContext))]
-    [Migration("20250305112458_Update_05.03.2025")]
-    partial class Update_05032025
+    [Migration("20250401143933_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,6 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<Guid>("ProviderId")
@@ -218,13 +217,13 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations.SqlServerDb
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Providers")
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Provider")
                         .WithMany("Products")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Providers");
+                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>

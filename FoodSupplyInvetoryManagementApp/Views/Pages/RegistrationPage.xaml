@@ -16,13 +16,13 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
                     <TextBlock Text="REGISTRATION"/>
-                    <TextBox/> <!--Firstname-->
-                    <TextBox/> <!--Lastname-->
-                    <TextBox/> <!--Middlename-->
-                    <TextBox/> <!--Organization-->
-                    <TextBox/> <!--Login-->
-                    <TextBox/> <!--Password-->
-                    <Button Content="Register"/> <!--Registr-->
+                    <TextBox Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"/> <!--Firstname-->
+                    <TextBox Text="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}"/> <!--Lastname-->
+                    <TextBox Text="{Binding Middlename, UpdateSourceTrigger=PropertyChanged}"/> <!--Middlename-->
+                    <TextBox Text="{Binding Organization, UpdateSourceTrigger=PropertyChanged}"/> <!--Organization-->
+                    <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/> <!--Login-->
+                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/> <!--Password-->
+                    <Button Content="Register" Command="{Binding RegisterCommand}"/> <!--Registr-->
                     <Button Content="Login" Command="{Binding SwitchToLoginCommand}"/> <!--LOG IN-->
 
                 </StackPanel>

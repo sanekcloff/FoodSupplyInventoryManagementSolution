@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodSupplyInventoryManagementDBContext.Migrations
 {
     [DbContext(typeof(SqliteDbContext))]
-    [Migration("20250305112436_Update_05.03.2025")]
-    partial class Update_05032025
+    [Migration("20250401143724_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,7 +70,6 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<Guid>("ProviderId")
@@ -213,13 +212,13 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Providers")
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Provider")
                         .WithMany("Products")
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Providers");
+                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>
