@@ -10,9 +10,28 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
 {
+    public class ImagedProduct : Product
+    {
+        public ImageBrush ImageLogo { get => new ImageBrush(GetBitmapImage(Image)); }
+        private BitmapImage GetBitmapImage(byte[] bytes)
+        {
+            using (MemoryStream stream = new MemoryStream(bytes))
+            {
+                var bitMapImage = new BitmapImage();
+                bitMapImage.BeginInit();
+                bitMapImage.StreamSource = stream;
+                bitMapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitMapImage.EndInit();
+                bitMapImage.Freeze();
+                return bitMapImage;
+            }
+        }
+    }
     public class ProductsPageViewModel : ViewModelBase
     {
         public ProductsPageViewModel(ViewModelBase viewModel)
@@ -64,9 +83,11 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                     Discount = _ediscount,
                     Supplier = _eselectedSupplier,
                     Image = _eimage,
-                    Cost = _ecost,
+                    Cost = _ecost
                 };
-                if (new ProductService().Update(_selectedProduct,newProduct).Result)
+                // подстановка продукта через выборку по id
+                var product = new 
+                if (new ProductService().Update(_selectedProduct as Product,newProduct).Result)
                 {
                     Debug.WriteLine("Success");
                     ViewUpdate?.Invoke(nameof(UpdateProduct), EventArgs.Empty);
@@ -104,8 +125,8 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
         private byte[] _eimage = null!;
         private ObservableCollection<Supplier> _suppliers;
 
-        private Product _selectedProduct = null!;
-        private ObservableCollection<Product> _products = null!;
+        private ImagedProduct _selectedProduct = null!;
+        private ObservableCollection<ImagedProduct> _products = null!;
         #endregion
 
         #region Props
@@ -127,7 +148,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                 if  (Set(ref _suppliers, value, nameof(Suppliers)));
             }
         }
-        public Product SelectedProduct 
+        public ImagedProduct SelectedProduct 
         { 
             get => _selectedProduct;
             set 
@@ -143,7 +164,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                 }
             } 
         }
-        public ObservableCollection<Product> Products 
+        public ObservableCollection<ImagedProduct> Products 
         { 
             get => _products;
             set 
@@ -180,9 +201,27 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
         private async Task InitializeCollections()
         {
             var products = await new ProductService().GetEntities();
+
+            ObservableCollection<ImagedProduct> imageProducts = new ObservableCollection<ImagedProduct>();
+
+            foreach (var product in products)
+            {
+                var newInst = new ImagedProduct() 
+                {
+                    Title = product.Title,
+                    Description = product.Description,
+                    Discount = product.Discount,
+                    Cost = product.Cost,
+                    Supplier = product.Supplier,
+                    Id = product.Id,
+                    Image = product.Image,
+                };
+                imageProducts.Add(newInst);
+            }
+
             var suppliers = await new SupplierService().GetEntities();
 
-            Products = new ObservableCollection<Product>(products!);
+            Products = new ObservableCollection<ImagedProduct>(imageProducts!);
             Suppliers = new ObservableCollection<Supplier>(suppliers!);
         }
         #endregion

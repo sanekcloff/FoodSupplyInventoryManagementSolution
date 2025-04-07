@@ -5,7 +5,14 @@
              StartupUri="Views\Windows\AuthenticationWindow.xaml">
     
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="\Assets\Styles\AppColors.xaml"/>
+                <ResourceDictionary Source="\Assets\Styles\ListViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </Application.Resources>
     
 </Application>

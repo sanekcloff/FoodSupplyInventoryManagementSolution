@@ -13,4 +13,8 @@
     <ProjectReference Include="..\FoodSupplyInventoryManagementDBContext\FoodSupplyInventoryManagementDBContext.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Assets\Icons\" />
+  </ItemGroup>
+
 </Project>

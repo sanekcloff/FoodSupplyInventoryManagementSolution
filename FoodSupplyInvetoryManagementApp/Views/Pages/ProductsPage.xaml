@@ -62,7 +62,7 @@
 
         </Grid>
 
-        <ListView Grid.Column="1" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView Grid.Column="1" ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ProductsListStyle}"/>
 
     </Grid>
     
