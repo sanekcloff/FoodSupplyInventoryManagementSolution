@@ -35,9 +35,9 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             }
         }
 
-        public override async Task<IEnumerable<WarehouseProduct?>> GetEntities() => await Task.FromResult(ctx.WarehouseProducts.Include(wp => wp.Product).ThenInclude(p => p.Provider).Include(wp => wp.Warehouse));
+        public override async Task<IEnumerable<WarehouseProduct?>> GetEntities() => await Task.FromResult(ctx.WarehouseProducts.Include(wp => wp.Product).ThenInclude(p => p.Supplier).Include(wp => wp.Warehouse));
 
-        public async override Task<WarehouseProduct?> GetEntity(Guid id) => await Task.FromResult(ctx.WarehouseProducts.Include(wp => wp.Product).ThenInclude(p => p.Provider).Include(wp => wp.Warehouse).Single(wp=>wp.Id == id));
+        public async override Task<WarehouseProduct?> GetEntity(Guid id) => await Task.FromResult(ctx.WarehouseProducts.Include(wp => wp.Product).ThenInclude(p => p.Supplier).Include(wp => wp.Warehouse).Single(wp=>wp.Id == id));
 
         public async override Task<bool> Update(WarehouseProduct entity, WarehouseProduct newEntity)
         {

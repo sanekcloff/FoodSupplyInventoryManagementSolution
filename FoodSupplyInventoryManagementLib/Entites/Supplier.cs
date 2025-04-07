@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodSupplyInventoryManagementLib.Entites
 {
-    public class Provider
+    public class Supplier
     {
         public Guid Id { get; set; }
 
@@ -15,7 +15,7 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string Email { get; set; } = null!;
         public string Phone { get; set; } = null!;
 
-        public IEnumerable<Product> Products { get; set; } = null!;
+        public virtual IEnumerable<Product> Products { get; set; } = null!;
 
         public override string ToString()
         {

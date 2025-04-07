@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodSupplyInventoryManagementDBContext.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,7 +29,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Providers",
+                name: "Suppliers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -40,7 +40,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Providers", x => x.Id);
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,15 +89,15 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                     Cost = table.Column<decimal>(type: "TEXT", nullable: false),
                     Discount = table.Column<decimal>(type: "TEXT", nullable: false),
                     Image = table.Column<byte[]>(type: "BLOB", nullable: true),
-                    ProviderId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    SupplierId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Providers_ProviderId",
-                        column: x => x.ProviderId,
-                        principalTable: "Providers",
+                        name: "FK_Products_Suppliers_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "Suppliers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -154,10 +154,20 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Firstname", "Lastname", "Login", "Middlename", "Organization", "Password" },
+                values: new object[] { new Guid("069f8d04-3e07-4535-97ed-acd8c3bacbb5"), "Имя", "Фамилия", "Login", "Отчество", "Организация", "Password" });
+
+            migrationBuilder.InsertData(
+                table: "Suppliers",
+                columns: new[] { "Id", "Description", "Email", "Phone", "Title" },
+                values: new object[] { new Guid("a90fb9f8-0ccf-4216-8ccf-283461ca3769"), "Лысый", "Psina@mail.ru", "Xiaomi", "Дядя толик" });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ProviderId",
+                name: "IX_Products_SupplierId",
                 table: "Products",
-                column: "ProviderId");
+                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Supplies_CustomerId",
@@ -207,7 +217,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Providers");
+                name: "Suppliers");
         }
     }
 }

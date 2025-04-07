@@ -19,9 +19,9 @@ namespace FoodSupplyInventoryManagementLib.Entites
 
         public Guid CustomerId { get; set; }
 
-        public Customer Customer { get; set; } = null!;
+        public virtual Customer Customer { get; set; } = null!;
 
-        public IEnumerable<SupplyItem> SupplyItems { get; set; } = null!;
+        public virtual IEnumerable<SupplyItem> SupplyItems { get; set; } = null!;
 
         [NotMapped]
         public string StatusAsString

@@ -14,6 +14,6 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string Title { get; set; } = null!;
         public string Address { get; set; } = null!;
 
-        public IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = null!;
+        public virtual IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = null!;
     }
 }

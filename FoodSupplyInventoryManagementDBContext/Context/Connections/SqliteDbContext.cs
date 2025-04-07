@@ -29,7 +29,6 @@ namespace FoodSupplyInventoryManagementDBContext.Context.Connections
             {
                 Debug.WriteLine($"{this.GetType().Name} was connected to {tempSolutionPath}!");
             }
-
         }
         private const string _folderName = "LocalData";
         private const string _fileName = "localDb.db";

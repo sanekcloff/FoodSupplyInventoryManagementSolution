@@ -48,7 +48,19 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("069f8d04-3e07-4535-97ed-acd8c3bacbb5"),
+                            Firstname = "Имя",
+                            Lastname = "Фамилия",
+                            Login = "Login",
+                            Middlename = "Отчество",
+                            Organization = "Организация",
+                            Password = "Password"
+                        });
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
@@ -69,7 +81,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("BLOB");
 
-                    b.Property<Guid>("ProviderId")
+                    b.Property<Guid>("SupplierId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -78,12 +90,12 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProviderId");
+                    b.HasIndex("SupplierId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Provider", b =>
+            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supplier", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +118,17 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Providers");
+                    b.ToTable("Suppliers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a90fb9f8-0ccf-4216-8ccf-283461ca3769"),
+                            Description = "Лысый",
+                            Email = "Psina@mail.ru",
+                            Phone = "Xiaomi",
+                            Title = "Дядя толик"
+                        });
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>
@@ -137,7 +159,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Supplies");
+                    b.ToTable("Supplies", (string)null);
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.SupplyItem", b =>
@@ -161,7 +183,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasIndex("SupplyId");
 
-                    b.ToTable("SupplyItems");
+                    b.ToTable("SupplyItems", (string)null);
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Warehouse", b =>
@@ -180,7 +202,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouses");
+                    b.ToTable("Warehouses", (string)null);
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.WarehouseProduct", b =>
@@ -204,18 +226,18 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("WarehouseProducts");
+                    b.ToTable("WarehouseProducts", (string)null);
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
-                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Provider", "Provider")
+                    b.HasOne("FoodSupplyInventoryManagementLib.Entites.Supplier", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("ProviderId")
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Provider");
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supply", b =>
@@ -232,7 +254,7 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.SupplyItem", b =>
                 {
                     b.HasOne("FoodSupplyInventoryManagementLib.Entites.Product", "Product")
-                        .WithMany()
+                        .WithMany("SupplyItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -274,10 +296,12 @@ namespace FoodSupplyInventoryManagementDBContext.Migrations
 
             modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Product", b =>
                 {
+                    b.Navigation("SupplyItems");
+
                     b.Navigation("WarehouseProducts");
                 });
 
-            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Provider", b =>
+            modelBuilder.Entity("FoodSupplyInventoryManagementLib.Entites.Supplier", b =>
                 {
                     b.Navigation("Products");
                 });

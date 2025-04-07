@@ -44,10 +44,6 @@ namespace FoodSupplyInventoryManagementDBContext.Context
         {
             _appDbContext = new SqliteDbContext();
         }
-        internal void SetSqlServerConnection()
-        {
-            _appDbContext = new SqlServerDbContext();
-        }
     }
 
 }

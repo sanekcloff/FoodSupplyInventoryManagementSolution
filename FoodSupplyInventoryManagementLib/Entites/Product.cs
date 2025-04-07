@@ -16,15 +16,17 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public decimal Discount { get; set; }
         public byte[]? Image { get; set; } = null!;
 
-        public Guid ProviderId { get; set; }
+        public Guid SupplierId { get; set; }
 
-        public Provider Provider { get; set; } = null!;
+        public virtual Supplier Supplier { get; set; } = null!;
 
-        public IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = [];
+        public virtual IEnumerable<WarehouseProduct> WarehouseProducts { get; set; } = null!;
+        public virtual IEnumerable<SupplyItem> SupplyItems { get; set; } = null!;
 
         public override string ToString()
         {
-            return $"{Title}: {Description} - {Cost} ({Discount}) [{Provider.ToString()}] - [{Image}]";
+            var imageInf = Image != null ? Image.Length : 0;
+            return $"{Title}: {Description} - {Cost} ({Discount}) [{Supplier.ToString()}] - [{imageInf}]";
         }
 
     }

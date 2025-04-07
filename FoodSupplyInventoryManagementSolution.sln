@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailingControllerLib", "Ema
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterLib", "ConverterLib\ConverterLib.csproj", "{97210E97-E77F-43D9-944D-BDA57DC3A572}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlternativeDbContext", "AlternativeDbContext\AlternativeDbContext.csproj", "{BE506B59-8217-424C-B092-FA7E74AE2647}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{97210E97-E77F-43D9-944D-BDA57DC3A572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97210E97-E77F-43D9-944D-BDA57DC3A572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97210E97-E77F-43D9-944D-BDA57DC3A572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE506B59-8217-424C-B092-FA7E74AE2647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE506B59-8217-424C-B092-FA7E74AE2647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE506B59-8217-424C-B092-FA7E74AE2647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE506B59-8217-424C-B092-FA7E74AE2647}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

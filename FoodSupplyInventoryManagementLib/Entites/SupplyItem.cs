@@ -13,8 +13,8 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public Guid ProductId { get; set; }
         public Guid SupplyId { get; set; }
 
-        public Supply Supply { get; set; } = null!;
-        public Product Product { get; set; } = null!;
+        public virtual Supply Supply { get; set; } = null!;
+        public virtual Product Product { get; set; } = null!;
 
         public short Amount { get; set; }
     }

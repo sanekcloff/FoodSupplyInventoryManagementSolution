@@ -18,6 +18,10 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Windows
         }
 
         private UserControl _currentPage;
-        public UserControl CurrentPage { get => _currentPage; set => Set(ref _currentPage, value, nameof(CurrentPage)); }
+        public UserControl CurrentPage 
+        { 
+            get => _currentPage; 
+            set => Set(ref _currentPage, value, nameof(CurrentPage)); 
+        }
     }
 }

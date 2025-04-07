@@ -18,7 +18,7 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public string Login { get; set; } = null!;
         public string Password { get; set; } = null!;
 
-        public IEnumerable<Supply> Supplies { get; set; } = null!;
+        public virtual IEnumerable<Supply> Supplies { get; set; } = null!;
 
         [NotMapped]
         public string Fullname

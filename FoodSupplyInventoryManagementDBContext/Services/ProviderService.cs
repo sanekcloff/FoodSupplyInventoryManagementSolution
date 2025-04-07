@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace FoodSupplyInventoryManagementDBContext.Services
 {
-    public class ProviderService : DbEntityServiceBase<Provider>
+    public class ProviderService : DbEntityServiceBase<Supplier>
     {
-        public override async Task<bool> Add(Provider entity)
+        public override async Task<bool> Add(Supplier entity)
         {
             if (entity == null) return await Task.FromResult(false);
 
@@ -37,14 +37,14 @@ namespace FoodSupplyInventoryManagementDBContext.Services
             }
         }
 
-        public override async Task<IEnumerable<Provider?>> GetEntities() => await Task.FromResult(ctx.Providers);
+        public override async Task<IEnumerable<Supplier?>> GetEntities() => await Task.FromResult(ctx.Suppliers);
 
-        public override async Task<Provider?> GetEntity(Guid id)
+        public override async Task<Supplier?> GetEntity(Guid id)
         {
-            return await Task.FromResult(ctx.Providers.Single(p=>p.Id == id));
+            return await Task.FromResult(ctx.Suppliers.Single(p=>p.Id == id));
         }
 
-        public override async Task<bool> Update(Provider entity, Provider newEntity)
+        public override async Task<bool> Update(Supplier entity, Supplier newEntity)
         {
             if (entity == null || newEntity == null) return await Task.FromResult(false);
 

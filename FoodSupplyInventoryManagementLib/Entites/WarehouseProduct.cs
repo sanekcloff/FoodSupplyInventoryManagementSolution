@@ -15,8 +15,8 @@ namespace FoodSupplyInventoryManagementLib.Entites
         public Guid WarehouseId { get; set; }
         public Guid ProductId { get; set; }
 
-        public Product Product { get; set; } = null!;
-        public Warehouse Warehouse { get; set; } = null!;
+        public virtual Product Product { get; set; } = null!;
+        public virtual Warehouse Warehouse { get; set; } = null!;
 
     }
 }
