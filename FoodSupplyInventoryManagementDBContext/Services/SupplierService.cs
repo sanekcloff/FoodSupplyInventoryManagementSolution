@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FoodSupplyInventoryManagementDBContext.Services
 {
-    public class ProviderService : DbEntityServiceBase<Supplier>
+    public class SupplierService : DbEntityServiceBase<Supplier>
     {
         public override async Task<bool> Add(Supplier entity)
         {

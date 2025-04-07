@@ -17,8 +17,8 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
     {
         public ProductsPageViewModel(ViewModelBase viewModel)
         {
-            _suppliers = (ObservableCollection<Supplier>)new ProviderService().GetEntities().Result;
-            _products = (ObservableCollection<Product>)new ProductService().GetEntities().Result;
+            _suppliers = new ObservableCollection<Supplier>(new SupplierService().GetEntities().Result!);
+            _products = new ObservableCollection<Product>(new ProductService().GetEntities().Result!);
 
             UploadImage = new RelayCommand(o => 
             {
@@ -40,7 +40,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                     Description = _description,
                     Discount = _discount,
                     Cost = _cost,
-                    Supplier = _selectedProvider
+                    Supplier = _selectedSupplier
                 }).Result) Debug.WriteLine("Success");
             });
         }
@@ -49,34 +49,34 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
         private string _description = string.Empty;
         private decimal _cost = 0;
         private byte _discount = 0;
-        private Supplier _selectedProvider = null!;
+        private Supplier _selectedSupplier = null!;
 
         private string _etitle = string.Empty;
         private string _edescription = string.Empty;
         private decimal _ecost = 0;
         private byte _ediscount = 0;
-        private Supplier _eselectedProvider = null!;
+        private Supplier _eselectedSupplier = null!;
 
         private byte[] _image = null!;
-        private ICollection<Supplier> _suppliers;
+        private ObservableCollection<Supplier> _suppliers;
 
         private Product _selectedProduct = null!;
-        private ICollection<Product> _products = null!;
+        private ObservableCollection<Product> _products = null!;
 
 
         public string Title { get => _title; set => Set(ref _title, value, nameof(Title)); }
         public string Description { get => _description; set => Set(ref _description, value, nameof(Description)); }
         public decimal Cost { get => _cost; set => Set(ref _cost, value, nameof(Cost)); }
         public byte Discount { get => _discount; set => Set(ref _discount, value, nameof(Discount)); }
-        public Supplier SelectedProvider { get => _selectedProvider; set => Set(ref _selectedProvider, value, nameof(SelectedProvider)); }
+        public Supplier SelectedSupplier { get => _selectedSupplier; set => Set(ref _selectedSupplier, value, nameof(SelectedSupplier)); }
         public string ETitle { get => _etitle; set => Set(ref _etitle, value, nameof(ETitle)); }
         public string EDescription { get => _edescription; set => Set(ref _edescription, value, nameof(EDescription)); }
         public decimal ECost { get => _ecost; set => Set(ref _ecost, value, nameof(ECost)); }
         public byte EDiscount { get => _ediscount; set => Set(ref _ediscount, value, nameof(EDiscount)); }
-        public Supplier ESelectedProvider { get => _eselectedProvider; set => Set(ref _eselectedProvider, value, nameof(ESelectedProvider)); }
-        public ICollection<Supplier> Suppliers { get => _suppliers; set => Set(ref _suppliers, value, nameof(Suppliers)); }
+        public Supplier ESelectedSupplier { get => _eselectedSupplier; set => Set(ref _eselectedSupplier, value, nameof(ESelectedSupplier)); }
+        public ObservableCollection<Supplier> Suppliers { get => _suppliers; set => Set(ref _suppliers, value, nameof(Suppliers)); }
         public Product SelectedProduct { get => _selectedProduct; set => Set(ref _selectedProduct, value, nameof(SelectedProduct)); }
-        public ICollection<Product> Products { get => _products; set => Set(ref _products, value, nameof(Products)); }
+        public ObservableCollection<Product> Products { get => _products; set => Set(ref _products, value, nameof(Products)); }
         public byte[] Image { get => _image; set => Set(ref _image, value, nameof(Image)); }
 
 

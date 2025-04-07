@@ -29,7 +29,7 @@
                         <TextBox Text="{Binding Cost, UpdateSourceTrigger=PropertyChanged}"/>
                         <Slider Minimum="0" Maximum="100" Value="{Binding Discount, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="Добавить изображение" Command="{Binding UploadImage}"/>
-                        <ComboBox ItemsSource="{Binding Providers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProvider, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox ItemsSource="{Binding Suppliers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedSupplier, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="Добавить" Command="{Binding AddProduct}"/>
 
                     </StackPanel>
@@ -45,7 +45,7 @@
                         <TextBox Text="{Binding ECost, UpdateSourceTrigger=PropertyChanged}"/>
                         <Slider Minimum="0" Maximum="100" Value="{Binding EDiscount, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="Изменить изображение" Command="{Binding UploadImage}"/>
-                        <ComboBox ItemsSource="{Binding Providers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ESelectedProvider, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox ItemsSource="{Binding Suppliers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ESelectedSupplier, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="Обновить" Command="{Binding UpdateProduct}"/>
 
                     </StackPanel>
