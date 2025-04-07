@@ -43,14 +43,14 @@ namespace FoodSupplyInventoryManagementDBContext.Context
                 entity.ToTable("Products"); // указываем название таблицы
                 entity.HasKey(product => product.Id); // указываем первичный ключ
                 entity.HasOne(product => product.Supplier) // указываем навигационное свойство для связи
-                .WithMany(provider => provider.Products) // указываем обратное навигационное свойство для связи
-                .HasForeignKey(product => product.SupplierId); // указываем свойсво для установки Id связи
+                .WithMany(supplier => supplier.Products) // указываем обратное навигационное свойство для связи
+                .HasForeignKey(product => product.SupplierId); // указываем свойСВО для установки Id связи
             });
 
             modelBuilder.Entity<Supplier>(entity =>
             {
                 entity.ToTable("Suppliers"); // указываем название таблицы
-                entity.HasKey(provider => provider.Id); // указываем первичный ключ
+                entity.HasKey(supplier => supplier.Id); // указываем первичный ключ
                 entity.HasData(new Supplier() // стартовые значения в таблице
                 { 
                     Id=Guid.NewGuid(),

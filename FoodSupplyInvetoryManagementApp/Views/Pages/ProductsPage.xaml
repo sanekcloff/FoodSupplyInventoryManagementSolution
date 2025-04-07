@@ -44,7 +44,7 @@
                         <TextBox Text="{Binding EDescription, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBox Text="{Binding ECost, UpdateSourceTrigger=PropertyChanged}"/>
                         <Slider Minimum="0" Maximum="100" Value="{Binding EDiscount, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Button Content="Изменить изображение" Command="{Binding UploadImage}"/>
+                        <Button Content="Изменить изображение" Command="{Binding UploadEImage}"/>
                         <ComboBox ItemsSource="{Binding Suppliers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ESelectedSupplier, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="Обновить" Command="{Binding UpdateProduct}"/>
 

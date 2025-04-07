@@ -49,11 +49,12 @@ namespace FoodSupplyInventoryManagementDBContext.Services
         public async override Task<bool> Update(Product entity, Product newEntity)
         {
             if (entity == null) return await Task.FromResult(false);
+            if (newEntity == null) return await Task.FromResult(false);
 
-            if (string.IsNullOrEmpty(entity.Title)) return await Task.FromResult(false);
-            if (entity.Cost == 0) return await Task.FromResult(false);
-            if (entity.Image == null!) return await Task.FromResult(false);
-            if (entity.Supplier == null!) return await Task.FromResult(false);
+            if (string.IsNullOrEmpty(newEntity.Title)) return await Task.FromResult(false);
+            if (newEntity.Cost == 0) return await Task.FromResult(false);
+            if (newEntity.Image == null!) return await Task.FromResult(false);
+            if (newEntity.Supplier == null!) return await Task.FromResult(false);
 
             try
             {
