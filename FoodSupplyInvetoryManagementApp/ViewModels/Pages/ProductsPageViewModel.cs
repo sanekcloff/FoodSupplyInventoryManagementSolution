@@ -86,8 +86,8 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                     Cost = _ecost
                 };
                 // подстановка продукта через выборку по id
-                
-                if (new ProductService().Update(_selectedProduct as Product,newProduct).Result)
+                var product = new ProductService().GetEntity(_selectedProduct.Id).GetAwaiter().GetResult();
+                if (new ProductService().Update(product, newProduct).Result)
                 {
                     Debug.WriteLine("Success");
                     ViewUpdate?.Invoke(nameof(UpdateProduct), EventArgs.Empty);
@@ -95,7 +95,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
             });
             RemoveProduct = new RelayCommand(o => 
             {
-                if (new ProductService().Remove(_selectedProduct).Result)
+                if (new ProductService().Remove(_selectedProduct).GetAwaiter().GetResult())
                 {
                     Debug.WriteLine("Success");
                     ViewUpdate?.Invoke(nameof(RemoveProduct), EventArgs.Empty);
@@ -221,7 +221,13 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
 
             var suppliers = await new SupplierService().GetEntities();
 
+            var tempSelectedProduct = _selectedProduct;
+
             Products = new ObservableCollection<ImagedProduct>(imageProducts!);
+            if (tempSelectedProduct != null)
+            {
+                _selectedProduct = Products.First(p=>p.Id == tempSelectedProduct.Id);
+            }
             Suppliers = new ObservableCollection<Supplier>(suppliers!);
         }
         #endregion
