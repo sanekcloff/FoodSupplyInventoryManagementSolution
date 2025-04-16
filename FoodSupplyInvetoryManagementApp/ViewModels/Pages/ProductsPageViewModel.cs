@@ -86,7 +86,7 @@ namespace FoodSupplyInvetoryManagementApp.ViewModels.Pages
                     Cost = _ecost
                 };
                 // подстановка продукта через выборку по id
-                var product = new 
+                
                 if (new ProductService().Update(_selectedProduct as Product,newProduct).Result)
                 {
                     Debug.WriteLine("Success");
